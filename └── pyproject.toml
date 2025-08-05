@@ -1,0 +1,59 @@
+
+## File Descriptions
+
+### resources/
+- Directory containing individual tools/resources for the MCP SDK
+- Each resource is a separate module with specific functionality
+- `flashcards/`: Tools for flashcard operations
+  - `create_flashcard.py`: Tool to create a new flashcard
+  - `get_flashcard.py`: Tool to retrieve a flashcard by ID
+  - `update_flashcard.py`: Tool to update an existing flashcard
+  - `delete_flashcard.py`: Tool to delete a flashcard
+- `sessions/`: Tools for session operations
+  - `create_session.py`: Tool to create a new session
+  - `get_session.py`: Tool to retrieve a session by ID
+  - `update_session.py`: Tool to update an existing session
+  - `delete_session.py`: Tool to delete a session
+- `utils.py`: Shared utility functions for resources
+
+### models/
+- Data models for the application
+- `flashcard.py`: Flashcard model with all fields including last_study_date and next_study_date
+- `session.py`: Session model with all fields
+
+### schemas/
+- Data validation schemas
+- `flashcard.py`: Schema for flashcard data validation
+- `session.py`: Schema for session data validation
+
+### config/
+- Configuration settings
+- `settings.py`: Configuration for the application including database path, logging level, etc.
+
+### data/
+- Directory for storing application data
+- `flashcards/`: Subdirectory for flashcard data files
+- `sessions/`: Subdirectory for session data files
+
+### tests/
+- Unit and integration tests
+- `test_flashcards.py`: Tests for flashcard tools
+- `test_sessions.py`: Tests for session tools
+
+### .env
+- Environment variables file
+- Contains configuration values for the application
+
+### requirements.txt
+- List of Python dependencies
+- Includes mcp-sdk, pydantic, python-dotenv, etc.
+
+### README.md
+- Project documentation
+- Installation instructions
+- Usage examples
+- How to use the tools/resources
+
+### pyproject.toml
+- Project metadata and build configuration
+- Contains project name, version, dependencies, and other metadata
