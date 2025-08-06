@@ -1,0 +1,6 @@
+.aider*
+.roo*
+.devbox*
+.venv*
+__pycache__
+data*

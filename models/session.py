@@ -8,5 +8,5 @@ class Session(BaseModel):
     flashcard_ids: List[int]
     status: str  # "active", "completed", "cancelled"
     started_at: datetime
-    completed_at: Optional[datetime] = None
-    results: Optional[List[dict]] = None  # List of dicts with card_id and score
+    completed_at: datetime = None
+    results: List[dict] = None  # List of dicts with card_id and score

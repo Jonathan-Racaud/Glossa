@@ -13,7 +13,6 @@
 - Design practice session data model (session_id, user_id, flashcard_ids, status, timestamps)
 - Design API endpoint structure and HTTP methods
 - Plan database schema and relationships
-- Create system architecture diagram
 - Define error handling and logging requirements
 
 ## Phase 3: Implementation

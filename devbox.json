@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.14.2/.schema/devbox.schema.json",
+  "packages": [
+    "git@latest",
+    "uv@latest",
+    "vscode@latest",
+    "python@latest",
+    "node2nix@latest",
+    "nodejs_24@latest"
+  ],
+  "shell": {
+    "init_hook": [],
+    "scripts": {
+      "code": "code --extension-dir .vscode/extensions"
+    }
+  }
+}

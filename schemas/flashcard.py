@@ -1,3 +1,6 @@
+import uuid
+
+from datetime import datetime
 from pydantic import BaseModel
 from typing import Optional
 
@@ -16,16 +19,16 @@ class FlashcardUpdate(BaseModel):
     audio_url: Optional[str] = None
 
 class FlashcardResponse(BaseModel):
-    id: int
+    id: uuid.UUID
     front: str
     back: str
     language: str
     image_url: Optional[str] = None
     audio_url: Optional[str] = None
-    created_at: str
-    updated_at: str
-    last_studied: Optional[str] = None
-    next_study: Optional[str] = None
+    created_at: datetime
+    updated_at: datetime
+    last_studied: Optional[datetime] = None
+    next_study: Optional[datetime] = None
 
     class Config:
         from_attributes = True
