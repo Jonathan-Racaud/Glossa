@@ -33,12 +33,46 @@ def list_flashcards() -> List[Flashcard]:
         except Exception as e:
             logging.error(f"Couldn't read flashcard: {filename}: {e}")
 
+
 @mcp.tool()
 def create_flashcard(flashcard: FlashcardCreate):
-    flashcard_filename = os.path.join(FLASHCARDS_DIR, flashcard.front)
+    """Create a new flashcard with the given front and back content"""
+    # Create the directory if it doesn't exist
+    if not os.path.exists(FLASHCARDS_DIR):
+        os.makedirs(FLASHCARDS_DIR)
     
-    with open(flashcard_filename, "w"):
-        json.dump(flashcard_filename, flashcard.model_dump_json())
+    # Use the front text as the filename (sanitized to be a valid filename)
+    filename = flashcard.front.strip().replace(" ", "_").replace("/", "_").replace("\\", "_")
+    if not filename:
+        filename = "unknown_flashcard"
+    
+    # Ensure the filename ends with .json
+    if not filename.lower().endswith(".json"):
+        filename += ".json"
+    
+    # Full path to the flashcard file
+    file_path = os.path.join(FLASHCARDS_DIR, filename)
+    
+    # Check if a flashcard with this front already exists
+    if os.path.exists(file_path):
+        raise FileExistsError(f"A flashcard with the front '{flashcard.front}' already exists.")
+    
+    # Create the flashcard object
+    new_flashcard = Flashcard(
+        front=flashcard.front,
+        back=flashcard.back,
+        id=None  # Will be assigned by the system
+    )
+    
+    # Write the flashcard to file
+    try:
+        with open(file_path, "w") as f:
+            json.dump(new_flashcard.model_dump(), f, indent=2)
+        logging.info(f"Created new flashcard: {flashcard.front}")
+        return {"message": f"Flashcard '{flashcard.front}' created successfully", "filename": filename}
+    except Exception as e:
+        logging.error(f"Failed to create flashcard: {e}")
+        raise
 
 if __name__ == "__main__":
     if not os.path.exists(FLASHCARDS_DIR):
